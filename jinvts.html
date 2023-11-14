@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>CM elliptic curves and class groups</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+<style>
+table, th, td {
+  border: 1px solid black;
+   border-collapse:collapse; 
+   padding: 5px;
+}
+
+</style>
+</head>
+<body> 
+<p><b> Introduction: \(
+ \newcommand{\O}{\mathcal{O}}
+\newcommand{\OK}{\O_K}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\s}{\sqrt{-3}}
+\newcommand{\lr}[1]{\langle #1\rangle}
+\)</b></p>
+
+<p>
+This page contains my computations of isomorphism classes of complex elliptic curves (or equivalently, lattices in \(\C\)) with CM by a particular order in an imaginary quadratic number field, which are in correspondence with the class group of that order. I also compute the ring class fields of these orders.</p>
+
+<p>
+
+To compute the class group of an order and the homothety/isomorphism classes of lattices with CM by that order, we used the bijection between the form class group and the ideal class group described in Theorem 7.7 of [Cox]. </p>
+
+<p>
+Since <a href="https://www.sagemath.org/">Sage</a> has implemented composition of quadratic forms and has methods to list all primitive positive definite 
+forms of a given discriminant, the structure of the form class group can be easily computed. 
+Then by the bijection between the form class group and the ideal class group described in Theorem 7.7 of [Cox] 
+(namely, a primitive positive definite quadratic form \(f(x,y) = ax^2+bxy+cy^2\) of discriminant \(D\) 
+corresponds to the proper ideal \((a,(-b+\sqrt{D})/2)\) of the unique order \(\O_D\) with discriminant \(D\))
+ we can then compute the homothety classes of lattices with CM by \(\O_D\).</p>
+
+<p>
+Sage has also implemented a database of Hilbert class polynomials . If \(H_{\O}(X)\) is the Hilbert class 
+polynomial of an order \(\O_D\), we see by Proposition 13.2 of [Cox] that by adjoining one root of \(H_{\O}(X)\)
+ to the fraction field of \(\O_D\), we obtain the ring class field \(L_{\O}\) of \(\O_D\). By then using Sage 
+ again to factor various polynomials over this ring class field, we can obtain a simpler description of \(L_{\O}\).</p>
+
+<p>Once we have a simple description of \(L_{\O}\), we can factor \(H_{\O}(X)\) over 
+\(L_{\O}\) to get exact values of the \(j\)-invariants of the lattices with CM by \(\O_D\). 
+To identify which \(j\)-invariant corresponds to which lattice, we need only then approximate the \(j\)-invariants 
+of each lattice; this can be done by truncating the \(q\)-series described in Proposition 9.12 of [Wa] or in <a href="https://math.mit.edu/classes/18.783/2017/ProblemSet8.pdf">this problem set</a>.</p>
+
+
+
+
+<hr>
+<p><b> Bibliography: </b><ul>
+<li>[Cox] David A Cox. <em>Primes of the form x<sup>\(2\)</sup> + ny<sup>\(2\)</sup>: Fermat, class field theory, and complex
+multiplication.</em> Vol. 34. John Wiley & Sons, 2011.</li>
+<li>[Wa] Lawrence C Washington. <em>Elliptic curves: number theory and cryptography.</em> Chapman
+and Hall/CRC, 2008.</li></ul>
+</p>
+
+<hr>
+<p><b> Computations: </b></p>
+
+<p>In the tables below, which cover some orders in the imaginary quadratic number fields \(K=\Q(i), \Q(\s)\), we list the order, the class group of that order, and the ring class field. When I have computed them, I give lattices \(\lr{a,b}\) which correspond to the elements of the class group (where \(\lr{a,b}\) corresponds to the \(\Z\) span of the complex numbers \(a,b\)) and the \(j\)-invariants of those lattices.
+</p>
+
+<p>Throughout, \(\zeta_m=e^{2\pi i/m}\), a primitive \(m\)th root of unity.
+The ring of integers of \(\Q(i)\) is \(\O_{\Q(i)}=\Z[i]\). </p><br>
+<table>
+<thead>
+  <tr>
+    <th>Order in \(\Q(i)\)</th>
+    <th>Class Group</th>
+    <th>Ring Class <br>Field</th>
+    <th colspan="2">Class Group Elements</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">\(\Z[i]\)</td>
+    <td rowspan="2">trivial</td>
+    <td rowspan="2">\(\Q(i)\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,i}=\Z[i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=1728\)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">\(\Z[2i]\)</td>
+    <td rowspan="2">trivial</td>
+    <td rowspan="2">\(\Q(i)\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,2i}=\Z[2i]\)</td>
+  </tr> 
+  <tr>
+    <td colspan="2">\(j=287496\)</td>
+  </tr>
+<!--   from here: copy for size 2 class group -->
+  <tr>
+    <td rowspan="4">\(\Z[3i]\)</td>
+    <td rowspan="4">\(\Z/2\Z\)</td>
+    <td rowspan="4">\(\Q(i,\sqrt{3})\)<br>\(=\Q(\zeta_{12})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,3i}=\Z[3i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=76771008+44330496\sqrt{3}\)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{3,1+i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=76771008-44330496\sqrt{3}\)</td>
+  </tr>
+<!--  end copy -->
+ <tr>
+    <td rowspan="4">\(\Z[3i]\)</td>
+    <td rowspan="4">\(\Z/2\Z\)</td>
+    <td rowspan="4">\(\Q(i,\sqrt{2})\)<br>\(=\Q(\zeta_{8})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,4i}=\Z[4i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=41113158120+29071392966\sqrt{2} \)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{2,1+2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=41113158120-29071392966\sqrt{2} \)</td>
+  </tr>
+  
+   <tr>
+    <td rowspan="4">\(\Z[5i]\)</td>
+    <td rowspan="4">\(\Z/2\Z\)</td>
+    <td rowspan="4">\(\Q(i,\sqrt{5})\)<br>\(=\Q(i+\sqrt{5})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,5i}=\Z[5i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=22015749613248+9845745509376\sqrt{5}\)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{5,1+i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=22015749613248-9845745509376\sqrt{5}\)</td>
+  </tr>
+  
+<!--   copy for class group of size 4 -->
+
+
+
+
+  <tr>
+    <td rowspan="8">\(\Z[6i]\)</td>
+    <td rowspan="8">\(\Z/4\Z\)</td>
+    <td rowspan="8">\(\Q(i,\sqrt[4]{12})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,6i}=\Z[6i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 5894625992142600+ 3403263903336192\sqrt{3} \)<br>\(+ 3167093925247392\sqrt[4]{12}+  914261265145368\left(\sqrt[4]{12}\right)^3 \)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{3,1-2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 5894625992142600- 3403263903336192\sqrt{3} \)<br>\(-\left(3167093925247392\sqrt[4]{12}-  914261265145368\left(\sqrt[4]{12}\right)^3\right)i\)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\(\lr{3,2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 5894625992142600+ 3403263903336192\sqrt{3} \)<br>\(-3167093925247392\sqrt[4]{12}-  914261265145368\left(\sqrt[4]{12}\right)^3\)</td>
+  </tr>
+  <tr>
+    <td>\(3\)</td>
+    <td>\(\lr{3,1+2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 5894625992142600- 3403263903336192\sqrt{3} \)<br>\(+\left(3167093925247392\sqrt[4]{12}-  914261265145368\left(\sqrt[4]{12}\right)^3\right)i\)</td>
+  </tr>
+  
+<!--   end copy -->
+
+  <tr>
+    <td rowspan="8">\(\Z[7i]\)</td>
+    <td rowspan="8">\(\Z/4\Z\)</td>
+    <td rowspan="8">\(\Q(i,\sqrt[4]{28})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,7i}=\Z[7i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 3156523030341791424  + 1193053563704623104\sqrt{7} \)<br>\(+ 1372206444836979456\sqrt[4]{28} + 259322642891337600\left(\sqrt[4]{28}\right)^3 \)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{7,4+i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 3156523030341791424  - 1193053563704623104\sqrt{7}\)<br>\(-\left(1372206444836979456\sqrt[4]{28} - 259322642891337600\left(\sqrt[4]{28}\right)^3\right)i\)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\(\lr{7,1+i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 3156523030341791424  + 1193053563704623104\sqrt{7}\)<br>\(-1372206444836979456\sqrt[4]{28} -259322642891337600\left(\sqrt[4]{28}\right)^3\)</td>
+  </tr>
+  <tr>
+    <td>\(3\)</td>
+    <td>\(\lr{7,4-i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 3156523030341791424  -1193053563704623104\sqrt{7}\)<br>\(+\left(1372206444836979456\sqrt[4]{28} -259322642891337600\left(\sqrt[4]{28}\right)^3\right)i\)</td>
+  </tr>
+  
+  
+  
+
+
+  <tr>
+    <td rowspan="8">\(\Z[8i]\)</td>
+    <td rowspan="8">\(\Z/4\Z\)</td>
+    <td rowspan="8">\(\Q(i,\sqrt[4]{2})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,8i}=\Z[8i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 1690291743695465540328 + 1195216754150697417216\sqrt{2} 
+    \)<br>\(+ 1421360268006467529594\sqrt[4]{2} + 1005053484016501794441\left(\sqrt[4]{2}\right)^3 \)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{4,1-2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 1690291743695465540328 - 1195216754150697417216\sqrt{2}\)<br>\( - \left(1421360268006467529594\sqrt[4]{2} - 1005053484016501794441\left(\sqrt[4]{2}\right)^3\right)i\)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\(\lr{2,1+4i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 1690291743695465540328 + 1195216754150697417216\sqrt{2} \)<br>\(- 1421360268006467529594\sqrt[4]{2} - 1005053484016501794441\left(\sqrt[4]{2}\right)^3\)</td>
+  </tr>
+  <tr>
+    <td>\(3\)</td>
+    <td>\(\lr{4,1+2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 1690291743695465540328 - 1195216754150697417216\sqrt{2} \)<br>\(+ \left(1421360268006467529594\sqrt[4]{2} - 1005053484016501794441\left(\sqrt[4]{2}\right)^3\right)i\)</td>
+  </tr>
+  
+  <tr>
+    <td rowspan="12">\(\Z[9i]\)</td>
+    <td rowspan="12">\(\Z/6\Z\)</td>
+    <td rowspan="12">\(\Q(i,\sqrt[3]{2+\sqrt{3}})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,9i}=\Z[9i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=g(\sqrt[3]{2+\sqrt{3}})\) for <br>\(g(x)=144798521157538799925248x^5 + 224601839534207454262272x^4 \)<br>\(+ 348387441521711024498688x^3 - 38798646810909390662656x^2 \)<br>\(- 60181881522719315466240x - 93350133609521714170176\)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{6,1+3i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=g(\zeta_3\sqrt[3]{2-\sqrt{3}})\)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\(\lr{3,1-3i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=g(\zeta_3\sqrt[3]{2+\sqrt{3}})\)</td>
+  </tr>
+  <tr>
+    <td>\(3\)</td>
+    <td>\(\lr{9,1+i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=g(\sqrt[3]{2-\sqrt{3}})\)</td>
+  </tr>
+  <tr>
+    <td>\(4\)</td>
+    <td>\(\lr{3,1+3i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=g(\zeta_3^2\sqrt[3]{2+\sqrt{3}})\)</td>
+  </tr>
+  <tr>
+    <td>\(5\)</td>
+    <td>\(\lr{6,1-3i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=g(\zeta_3^2\sqrt[3]{2-\sqrt{3}})\)</td>
+  </tr>
+  
+  <tr>
+    <td rowspan="8">\(\Z[10i]\)</td>
+    <td rowspan="8">\(\Z/4\Z\)</td>
+    <td rowspan="8">\(\Q(i,\sqrt[4]{5})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,10i}=\Z[10i]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 484693377088718179461346056  + 216761467882862592971592192\sqrt{5} \)<br>\(+ 324133996814361318579017184\sqrt[4]{5} + 144957130139122438009154688\left(\sqrt[4]{5}\right)^3 \)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{5,2+2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 484693377088718179461346056  - 216761467882862592971592192\sqrt{5} \)<br>\(+ (324133996814361318579017184\sqrt[4]{5} - 144957130139122438009154688\left(\sqrt[4]{5}\right)^3)i\)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\(\lr{5,2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 484693377088718179461346056  + 216761467882862592971592192\sqrt{5}  \)<br>\(-324133996814361318579017184\sqrt[4]{5} - 144957130139122438009154688\left(\sqrt[4]{5}\right)^3\)</td>
+  </tr>
+  <tr>
+    <td>\(3\)</td>
+    <td>\(\lr{5,2-2i}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j= 484693377088718179461346056  - 216761467882862592971592192\sqrt{5} \)<br>\(- (324133996814361318579017184\sqrt[4]{5} - 144957130139122438009154688\left(\sqrt[4]{5}\right)^3)i\)</td>
+  </tr>
+  <tr>
+    <td rowspan="6">\(\Z[11i]\)</td>
+    <td rowspan="6">\(\Z/6\Z\)</td>
+    <td rowspan="6">not computed</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,11i}=\Z[11i]\)</td>
+  </tr>
+    <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{11,3-i}\)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\(\lr{11,2-i}\)</td>
+  </tr><tr>
+    <td>\(3\)</td>
+    <td>\(\lr{11,1+i}\)</td>
+  </tr><tr>
+    <td>\(4\)</td>
+    <td>\(\lr{11,2+i}\)</td>
+  </tr><tr>
+    <td>\(5\)</td>
+    <td>\(\lr{11,3+i}\)</td>
+  </tr>
+  
+  <td rowspan="8">\(\Z[12i]\)</td>
+    <td rowspan="8">\(\Z/2\Z \times \Z/4\Z\)</td>
+    <td rowspan="8">\(\Q(i,\sqrt{2},\sqrt[4]{3})\)<br>\(=\Q(i,\sqrt{2}+\sqrt[4]{3})\)</td>
+    <td>\((0,0)\)</td>
+    <td>\(\lr{1,12i}=\Z[12i]\)</td>
+  </tr>
+    <tr>
+    <td>\((0,1)\)</td>
+    <td>\(\lr{3,1+4i}\)</td>
+  </tr>
+  <tr>
+    <td>\((0,2)\)</td>
+    <td>\(\lr{3,4i}\)</td>
+  </tr><tr>
+    <td>\((0,3)\)</td>
+    <td>\(\lr{3,1-4i}\)</td>
+  </tr><tr>
+    <td>\((1,0)\)</td>
+    <td>\(\lr{2,1+6i}\)</td>
+  </tr><tr>
+    <td>\((1,1)\)</td>
+    <td>\(\lr{6,1-2i}\)</td>
+  </tr><tr>
+    <td>\((1,2)\)</td>
+    <td>\(\lr{6,3+2i}\)</td>
+  </tr><tr>
+    <td>\((1,3)\)</td>
+    <td>\(\lr{6,1+2i}\)</td>
+  </tr>
+  
+  
+  
+   <tr>
+    <td rowspan="6">\(\Z[13i]\)</td>
+    <td rowspan="6">\(\Z/6\Z\)</td>
+    <td rowspan="6">not computed</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,13i}=\Z[13i]\)</td>
+  </tr>
+    <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{13,2-i}\)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\(\lr{13,3-i}\)</td>
+  </tr><tr>
+    <td>\(3\)</td>
+    <td>\(\lr{13,1+i}\)</td>
+  </tr><tr>
+    <td>\(4\)</td>
+    <td>\(\lr{13,3+i}\)</td>
+  </tr><tr>
+    <td>\(5\)</td>
+    <td>\(\lr{13,2+i}\)</td>
+  </tr>
+</tbody>
+</table>
+
+
+<hr> <p>We set \(\omega=\zeta_6\).
+The ring of integers of \(\Q(\s)\) is \(\O_{\Q(\s)}=\Z[\frac{1+\s}{2}]=\Z[\omega]\). </p>
+<table>
+<thead>
+  <tr>
+    <th>Order in \(\Q(\s)\)</th>
+    <th>Class Group</th>
+    <th>Ring Class <br>Field</th>
+    <th colspan="2">Class Group Elements</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">\(\Z[\omega]\)</td>
+    <td rowspan="2">trivial</td>
+    <td rowspan="2">\(\Q(\s)\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,\omega}=\Z[\omega]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=0\)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">\(\Z[2\omega]\)<br>\(=\Z[\s]\)</td>
+    <td rowspan="2">trivial</td>
+    <td rowspan="2">\(\Q(\s)\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,\s}=\Z[\s]\)</td>
+  </tr> 
+  <tr>
+    <td colspan="2">\(j=54000\)</td>
+  </tr>
+  <td rowspan="2">\(\Z[3\omega]\)</td>
+    <td rowspan="2">trivial</td>
+    <td rowspan="2">\(\Q(\s)\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,3\omega}=\Z[3\omega]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=-12288000\)</td>
+  </tr>
+<!--   from here: copy for size 2 class group -->
+  <tr>
+    <td rowspan="4">\(\Z[2\s]\)</td>
+    <td rowspan="4">\(\Z/2\Z\)</td>
+    <td rowspan="4">\(\Q(\s,i)\)<br>\(=\Q(\zeta_{12})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,2\s}=\Z[2\s]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=1417905000+818626500\sqrt{3}\)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{2,\s}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=1417905000-818626500\sqrt{3} \)</td>
+  </tr>
+<!--  end copy -->
+ 
+   <tr>
+    <td rowspan="4">\(\Z[5\omega]\)</td>
+    <td rowspan="4">\(\Z/2\Z\)</td>
+    <td rowspan="4">\(\Q(\s,\sqrt{5})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,5\omega}=\Z[5\omega]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=-327201914880-146329141248\sqrt{5} \)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{3,5\omega-1}\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(-327201914880+146329141248\sqrt{5}\)</td>
+  </tr>
+  
+  <tr>
+    <td rowspan="6">\(\Z[3\s]\)</td>
+    <td rowspan="6">\(\Z/3\Z\)</td>
+    <td rowspan="6">\(\Q(\s,\sqrt[3]{2})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,3\s}=\Z[3\s]\)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=31710790944000\left(\sqrt[3]{2}\right)^2 \)<br>\(+ 39953093016000\sqrt[3]{2} + 50337742902000\)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{4,-1+3\sqrt{-3}} \)</td>
+  </tr>
+  <tr>
+    <td colspan="2">\(j=31710790944000\left(\omega^2\sqrt[3]{2}\right)^2 \)<br>\(+ 39953093016000\omega^2\sqrt[3]{2} + 50337742902000 \)</td>
+  </tr>
+  <tr>
+    <td>\(2\)</td>
+    <td>\(\lr{4,1+3\sqrt{-3}} \)</td>
+  </tr>
+   <tr>
+    <td colspan="2">\(31710790944000\left(\omega^4\sqrt[3]{2}\right)^2 \)<br>\(+ 39953093016000\omega^4\sqrt[3]{2} + 50337742902000 \)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">\(\Z[7\omega]\)</td>
+    <td rowspan="2">\(\Z/2\Z\)</td>
+    <td rowspan="2">\(\Q(\s,\sqrt{-7})\)</td>
+    <td>\(0\)</td>
+    <td>\(\lr{1,7\omega}=\Z[7\omega]\)</td>
+  </tr>
+  <tr>
+    <td>\(1\)</td>
+    <td>\(\lr{3,7\omega-2}\)</td>
+  </tr>
+  
+  <tr>
+    <td rowspan="4">\(\Z[4\s]\)</td>
+    <td rowspan="4">\(\Z/2\Z \times \Z/2\Z\)</td>
+    <td rowspan="4">\(\Q(\s,\sqrt{2},\sqrt{3})\)<br>\(=\Q(i,\sqrt{2},\sqrt{3})\)</td>
+    <td>\((0,0)\)</td>
+    <td>\(\lr{1,4\s}=\Z[4\s]\)</td>
+  </tr>
+  <tr>
+    <td>\((0,1)\)</td>
+    <td>\(\lr{4,\s}\)</td>
+  </tr>
+<tr>
+    <td>\((1,0)\)</td>
+    <td>\(\lr{4,2+\s}\)</td>
+  </tr>
+  <tr>
+    <td>\((1,1)\)</td>
+    <td>\(\lr{2,1+2\s}\)</td>
+  </tr>
+  
+<!-- 
+<tr><td rowspan="3">\(\Z[9\omega]\) </td>
+<td rowspan="3"> \(\Z/3\Z\)</td>
+<td rowspan="3"> \(  \Q(\s,\sqrt[3]{3})\)<br>\(=\Q(\sqrt[6]{-3}   \)</td>
+<td>\(0\)</td>
+<td>\(\lr{}\)</td>
+</tr>
+<tr>
+<td>\(0\)</td>
+<td>\(\lr{}\)</td>
+</tr>
+ -->
+<tr><td rowspan="3">\(\Z[9\omega]\) </td>
+<td rowspan="3"> \(\Z/3\Z\)</td>
+<td rowspan="3"> \(  \Q(\s,\sqrt[3]{3})\)<br>\(=\Q(\sqrt[6]{-3} )  \)</td>
+<td>\(0\)</td>
+<td>\(\lr{}\)</td>
+</tr>
+<tr>
+<td>\(1\)</td>
+<td>\(\lr{7,9\omega-3}\)</td>
+</tr>
+<tr>
+<td>\(0\)</td>
+<td>\(\lr{7,9\omega-6}\)</td>
+</tr>
+<tr><td>\(\Z[5\s]\) </td>
+<td> \(\Z/6\Z\)</td>
+<td> \(  \Q(\s,\sqrt[6]{80})\)</td>
+<td colspan="2">not computed</td>
+</tr>
+<tr><td>\(\Z[6\s]\) </td>
+<td > \(\Z/6\Z\)</td>
+<td> \(  \Q(\s,\sqrt[6]{-4})\)</td>
+<td colspan="2">not computed</td>
+</tr>
+<tr><td>\(\Z[7\s]\) </td>
+<td> \(\Z/6\Z\)</td>
+<td> \(  \Q(\s,\sqrt[6]{-28})\)</td>
+<td colspan="2">not computed</td>
+</tr>
+<tr><td>\(\Z[15\omega]\) </td>
+<td> \(\Z/6\Z\)</td>
+<td> \(  \Q(\s,\sqrt[6]{5})\)</td>
+<td colspan="2">not computed</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+<p> This website is hosted with GitHub Pages. LaTeX displayed with <a href="https://docs.mathjax.org">MathJax</a>. </p>
+</body>
+</html>
