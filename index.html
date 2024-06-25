@@ -1,78 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheela Devadas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+    background: #e0e0e0;
+    color: #333;
+    padding-top: 20px; /* Decreased padding top */
+    padding-bottom: 10px; /* Added padding bottom */
+    min-height: 70px;
+    border-bottom: #77ab59 3px solid;
+}
 
-<HTML><HEAD><TITLE>Sheela Devadas</TITLE></HEAD>
+header a {
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 20px 10px; /* Adjusted padding */
+    display: inline-block; /* Added display inline-block */
+}
 
+header ul {
+    padding: 0;
+    list-style: none;
+    position: relative;
+    margin: 0; /* Added to remove default margin */
+}
 
-<TABLE>
-<TR VALIGN=CENTER>
+header li {
+    display: inline-block; /* Changed to inline-block */
+    margin-right: 20px; /* Increased spacing between menu items */
+    position: relative;
+}
 
-<TD><IMG SRC="sheela.jpg" WIDTH=200 ><p>Photo by <a href="https://julielippert.com/">Julie Lippert</a>.</TD>
+header #branding {
+    float: left;
+    margin-left: 20px; /* Added margin to the left */
+}
 
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+        header .highlight, header .current a {
+            color: #77ab59;
+            font-weight: bold;
+        }
+        #showcase {
+            background: #f0f0f0;
+            color: #333;
+            padding: 60px 20px;
+            overflow: hidden; /* Clear floats */
+        }
+        #showcase .profile {
+            float: left;
+            width: 30%; /* Adjust as needed */
+            margin-right: 20px;
+        }
+        #showcase .profile-pic {
+            max-width: 95%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+        }
+        #showcase .bio {
+            float: left;
+            width: 65%; /* Adjust as needed */
+        }
+        #showcase h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+        #showcase p {
+            font-size: 18px;
+        }
+        .section {
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+        }
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Sheela Devadas</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#writing">Other Math Writing</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<TD>
-<ul>
-<font size="+1">
-Sheela Devadas<p>
-<a href="mailto:sheelad@uw.edu">sheelad@uw.edu</a><p>
-</font>
-</ul>
-</TD>
+    <section id="showcase">
+        <div class="container">
+            <div class="profile">
+                <img src="sheela.jpg" alt="Sheela Devadas" class="profile-pic">
+                Photo by <a href="https://julielippert.com/">Julie Lippert</a>
+            </div>
+            <div class="bio">
+                <p>
+                    I am a <a href="https://beta.nsf.gov/funding/opportunities/mathematical-sciences-postdoctoral-research-fellowships-msprf">NSF Mathematical Sciences Postdoctoral Research Fellow</a> in the <a href="https://math.washington.edu">University of Washington Department of Mathematics</a>, mentored by <a href="https://max.lieblich.us/">Max Lieblich</a>, until September 2024. Contact me at <a href="mailto:sheelad@uw.edu">sheelad@uw.edu</a>.
+                </p>
+                <p>
+                    Here is my <a href="CV/devadas_cv.pdf">CV</a>.
+                </p>
+                <p>
+                    I did my Ph.D. at Stanford University under the supervision of <a href="http://virtualmath1.stanford.edu/~conrad/">Brian Conrad</a>. 
+                </p>
+            </div>
+        </div>
+    </section>
 
+    <section id="publications" class="section container">
+        <h2>Publications and Preprints</h2>
+        <ul>
+            <li>(with Lieblich, M.) Brauer containers of varieties of maximal Picard number. In preparation.</li>
+            <li>GAGA for Henselian schemes (2023). On <a href="https://arxiv.org/abs/2306.01722">arXiv</a>.</li>
+            <li>Henselian schemes in positive characteristic (2022). On <a href="https://arxiv.org/abs/2212.08644">arXiv</a>.</li>
+            <li>(with Sun, Y.) The polynomial representation of the type <em>A<sub>n-1</sub></em> rational Cherednik algebra in characteristic  <em>p</em> | <em>n</em> (2017). <em>Communications in Algebra, 45</em>(5), 1926-1934. <a href="http://dx.doi.org/10.1080/00927872.2016.1226866">doi:  10.1080/00927872.2016.1226866</a>. On <a href="https://arxiv.org/abs/1505.07891" >arXiv</a>.</li>
+            <li>(with Rubinfeld, R.) A Self-Tester for Linear Functions over the Integers with an Elementary Proof of Correctness (2014). <em>Theory of Computing Systems</em>. <a href="http://dx.doi.org/10.1007/s00224-015-9639-z">doi: 10.1007/s00224-015-9639-z</a>. On <a href="https://arxiv.org/abs/1412.5484">arXiv</a>.</li>
+            <li>(with Sam, S. V.)  Representations of rational Cherednik algebras of <em>G(m, r, n) </em>in positive characteristic (2014). <em>Journal of Commutative Algebra, 6</em>(4), 525-559. <a href="http://dx.doi.org/10.1216/JCA-2014-6-4-525">doi: 10.1216/JCA-2014-6-4-525</a>. On <a href="https://arxiv.org/abs/1304.0856">arXiv</a>.<br/><br/>
+        </ul>
+    </section>
 
-<TD>
-<ul>
+    <section id="writing" class="section container">
+        <h2>Other Math Writing</h2>
+        <p> <a href="jinvts.html">Computations of class groups and <em>j</em>-invariants of complex elliptic curves/lattices with CM for some orders in imaginary quadratic number fields.</a></p>
+        <p> <a href="noetherianhenseliancounterexample.pdf">A Noetherian counterexample to Theorem B for Henselian schemes.</a> (Johan de Jong gives a non-Noetherian counterexample in <a href="https://www.math.columbia.edu/~dejong/wordpress/?p=4262"> this blog post. </a>)</p>
+        <p> <a href="Brauercontainerstalk-nobuilds.pdf">Slides for my talk on Brauer containers for complex abelian varieties.</a></p>
+        <hr>
+    </section>
 
-</body></html>
-<p>I was a <a href="https://beta.nsf.gov/funding/opportunities/mathematical-sciences-postdoctoral-research-fellowships-msprf">NSF Mathematical Sciences Postdoctoral Research Fellow</a> in the <a href="https://math.washington.edu">University of Washington Department of Mathematics</a>, mentored by <a href="https://max.lieblich.us/">Max Lieblich.</a>
-<p>
-Here is my <a href="CV/devadas_cv.pdf">CV</a>.
-<p>
-I did my Ph.D. at Stanford University under the supervision of <a href="http://virtualmath1.stanford.edu/~conrad/">Brian Conrad</a>. 
-</ul>
+    <section id="teaching" class="section container">
+        <h2>Teaching</h2>
+        <p> In Spring of 2024 I taught <a href="https://canvas.uw.edu/courses/1720213">Math 403</a> at UW.</p>
+        <p>For previous teaching and mentoring experience, see my <a href="CV/devadas_cv.pdf">CV</a>.</p>
+    </section>
 
-</TD>
-</TABLE>
-
-<p>
-
-<hr>
-
-<p> <b>PUBLICATIONS AND PREPRINTS:</b>
-<ul>
-<li>(with Lieblich, M.) Brauer containers of varieties of maximal Picard number. In preparation.</li>
-<li>GAGA for Henselian schemes (2023). On <a href="https://arxiv.org/abs/2306.01722">arXiv</a>.</li>
-<li>Henselian schemes in positive characteristic (2022). On <a href="https://arxiv.org/abs/2212.08644">arXiv</a>.</li>
-<li>(with Sun, Y.) The polynomial representation of the type <em>A<sub>n-1</sub></em> rational Cherednik algebra in characteristic  <em>p</em> | <em>n</em> (2017). <em>Communications in Algebra, 45</em>(5), 1926-1934. <a href="http://dx.doi.org/10.1080/00927872.2016.1226866">doi:  10.1080/00927872.2016.1226866</a>. On <a href="https://arxiv.org/abs/1505.07891" >arXiv</a>.</li>
-	<li>(with Rubinfeld, R.) A Self-Tester for Linear Functions over the Integers with an Elementary Proof of Correctness (2014). <em>Theory of Computing Systems</em>. <a href="http://dx.doi.org/10.1007/s00224-015-9639-z">doi: 10.1007/s00224-015-9639-z</a>. On <a href="https://arxiv.org/abs/1412.5484">arXiv</a>.</li>
-	<li>(with Sam, S. V.)  Representations of rational Cherednik algebras of <em>G(m, r, n) </em>in positive characteristic (2014). <em>Journal of Commutative Algebra, 6</em>(4), 525-559. <a href="http://dx.doi.org/10.1216/JCA-2014-6-4-525">doi: 10.1216/JCA-2014-6-4-525</a>. On <a href="https://arxiv.org/abs/1304.0856">arXiv</a>.<br/><br/>
-		 </li>
-</ul>
-
-<p>
-
-<hr>
-
-<p> <b>OTHER MATH WRITING:</b>
-
-<p> <a href="jinvts.html">Computations of class groups and <em>j</em>-invariants of complex elliptic curves/lattices with CM for some orders in imaginary quadratic number fields.</a>
-
-<p> <a href="noetherianhenseliancounterexample.pdf">A Noetherian counterexample to Theorem B for Henselian schemes.</a> (Johan de Jong gives a non-Noetherian counterexample in <a href="https://www.math.columbia.edu/~dejong/wordpress/?p=4262"> this blog post. </a>)
-
-<p> <a href="Brauercontainerstalk-nobuilds.pdf">Slides for my talk on Brauer containers for complex abelian varieties. </a>
-
-<hr>
-
-<p> <b>TEACHING:</b>
-
-<p> In Spring of 2024 I taught <a href="https://canvas.uw.edu/courses/1720213">Math 403</a> at UW. 
-
-
-For previous teaching and mentoring experience, see my <a href="CV/devadas_cv.pdf">CV</a>.
-<p>
-
-<hr>
-
-
-
-
-<p> This website is hosted with GitHub Pages.
-</body></html>
+    <footer>
+        <p>Sheela Devadas &copy; 2024 | Hosted by GitHub Pages</p>
+    </footer>
+</body>
+</html>
