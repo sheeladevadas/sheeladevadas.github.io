@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sheela Devadas</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -95,11 +99,38 @@ header nav {
             margin-top: 20px;
             background: #fff;
         }
+        
+       .section-text-image-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Text takes 1/3, images take 2/3 */
+    gap: 20px; /* Space between text and images */
+    padding: 0px;
+    margin-top: 0px;
+    background: #fff;
+    align-items: start; /* Align content at the top */
+}
+
+.section-text-image-grid .text {
+    color: #333;
+}
+
+.section-text-image-grid .image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Two columns for images */
+    gap: 20px; /* Space between images */
+}
+
+.section-text-image-grid .image-grid img {
+    width: 100%; /* Images fill their grid cells */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px;
+    object-fit: cover; /* Ensure consistent sizing */
+}
         footer {
             padding: 20px;
             margin-top: 20px;
-            color: #fff;
-            background-color: #333;
+            border-top: #00AAE4 3px solid;
+            background-color: #e0e0e0;
             text-align: center;
         }
     </style>
@@ -113,8 +144,9 @@ header nav {
             <nav>
                 <ul>
                     <li><a href="#publications">Publications</a></li>
-                    <li><a href="#writing">Other Math Writing</a></li>
+                    <li><a href="#writing">Slides and Notes</a></li>
                     <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="#misc">Miscellaneous</a></li>
                 </ul>
             </nav>
         </div>
@@ -135,6 +167,9 @@ header nav {
                 <p>
                     I did my Ph.D. at Stanford University under the supervision of <a href="http://virtualmath1.stanford.edu/~conrad/">Brian Conrad</a>. 
                 </p>
+                <p>
+                I am interested in algebraic geometry and number theory.
+                </p>
             </div>
         </div>
     </section>
@@ -152,21 +187,38 @@ header nav {
     </section>
 
     <section id="writing" class="section container">
-        <h2>Other Math Writing</h2>
-        <p> <a href="jinvts.html">Computations of class groups and <em>j</em>-invariants of complex elliptic curves/lattices with CM for some orders in imaginary quadratic number fields.</a></p>
-        <p> <a href="noetherianhenseliancounterexample.pdf">A Noetherian counterexample to Theorem B for Henselian schemes.</a> (Johan de Jong gives a non-Noetherian counterexample in <a href="https://www.math.columbia.edu/~dejong/wordpress/?p=4262"> this blog post. </a>)</p>
-        <p> <a href="Brauercontainerstalk-nobuilds.pdf">Slides for my talk on Brauer containers for complex abelian varieties.</a></p>
-        
-    </section>
+        <h2>Slides and Notes</h2>
 
-    <section id="teaching" class="section container">
+        <p> <a href="noetherianhenseliancounterexample.pdf">A Noetherian counterexample</a> to Theorem B for Henselian schemes. (Johan de Jong gives a non-Noetherian counterexample in <a href="https://www.math.columbia.edu/~dejong/wordpress/?p=4262"> this blog post. </a>)</p>
+        <p> <a href="Brauercontainerstalk-nobuilds.pdf">Slides</a> for my colloquium talk on Brauer containers for complex abelian varieties. We now refer to these as "higher-weight Jacobians" rather than containers.</p>
+        <p> <a href="jinvts.html">Computations</a> of class groups and <em>j</em>-invariants of complex elliptic curves/lattices with CM for some orders in imaginary quadratic number fields.</p>
+    </section>
+        <section id="teaching" class="section container">
         <h2>Teaching</h2>
-        <p> In Spring of 2024 I taught <a href="https://canvas.uw.edu/courses/1720213">Math 403</a> at UW.</p>
+        <p><a href="exam-sd/exam-sd.cls">Custom \(\LaTeX\) class</a> which I made for exams (and <a href="exam-sd/exam-sd-template.tex">a template exam</a>) when I was teaching MATH 402/3 (Introduction to Modern Algebra) at UW. I have tried to give credit wherever possible to code I found online; if you find any errors or if I forgot to attribute something, please <a href="mailto:sheelad.math@gmail.com">let me know</a>.</p>
         <p>For previous teaching and mentoring experience, see my <a href="CV/devadas_cv.pdf">CV</a>.</p>
     </section>
+<section id="misc" class="section container">
+<h2>Miscellaneous</h2>
+<div class="section-text-image-grid">
+    <div class="text">
+        After I took part in the <a href="https://momath.org/civicrm/?page=CiviCRM&q=civicrm%2Fevent%2Finfo&id=9837">Online Topological Crochet</a> class offered by MoMath and Shiying Dong in January 2024, I adapted her seamless topological crochet method to more easily handle joinings of 4-6 chains. This allowed me to make <a href="https://en.m.wikipedia.org/wiki/Seifert_surface">Seifert surfaces</a> with boundary the <a href="https://en.wikipedia.org/wiki/Figure-eight_knot_(mathematics)">figure eight knot \(4_1\)</a> and the <a href="https://en.wikipedia.org/wiki/Borromean_rings">Borromean rings \(6_2^3\)</a>.
+        
+    </div>
+    <div class="image-grid">
+        <img src="crochet2.jpeg" alt="Image 2">
+        <img src="crochet3.jpeg" alt="Image 3">
+        <img src="crochet4.jpeg" alt="Image 4">
+        <img src="crochet1.jpeg" alt="Image 1">
+    </div>
+</div>
+        
+        
+</section>
+
 
     <footer>
-        <p>Sheela Devadas &copy; 2024 | Hosted by GitHub Pages</p>
+        <p>Sheela Devadas &copy; 2024 | Hosted by GitHub Pages. \(\LaTeX\) displayed with <a href="https://docs.mathjax.org">MathJax</a>.</p>
     </footer>
 </body>
 </html>
