@@ -1,24 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>CM elliptic curves and class groups</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM elliptic curves and class groups || Sheela Devadas</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
-<style>
-table, th, td {
+    <style>
+    table, th, td {
   border: 1px solid black;
    border-collapse:collapse; 
    padding: 5px;
 }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+    background: #e0e0e0;
+    color: #333;
+    padding-top: 20px; /* Decreased padding top */
+    padding-bottom: 10px; /* Added padding bottom */
+    min-height: 70px;
+    border-bottom: #00AAE4 3px solid;
+}
+
+header a {
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 20px 10px; /* Adjusted padding */
+    display: inline-block; /* Added display inline-block */
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+    position: relative;
+    margin: 0; /* Added to remove default margin */
+}
+
+header li {
+    display: inline-block; /* Changed to inline-block */
+    margin-right: 20px; /* Increased spacing between menu items */
+    position: relative;
+}
+
+header #branding {
+    float: left;
+    margin-left: 20px; /* Added margin to the left */
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+        header .highlight, header .current a {
+            color: #77ab59;
+            font-weight: bold;
+        }
+        .section {
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+        }
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+             border-top: #00AAE4 3px solid;
+            background-color: #e0e0e0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Sheela Devadas</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#computations">Computations</a></li>
+                    <li><a href="index.html">Return to main page</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
 
 </style>
 </head>
 <body> 
-<p><b> Introduction: \(
+
+ <section id="introduction" class="section container">
+<h2> Introduction: \(
  \newcommand{\O}{\mathcal{O}}
 \newcommand{\OK}{\O_K}
 \newcommand{\Z}{\mathbf{Z}}
@@ -26,7 +115,7 @@ table, th, td {
 \newcommand{\Q}{\mathbf{Q}}
 \newcommand{\s}{\sqrt{-3}}
 \newcommand{\lr}[1]{\langle #1\rangle}
-\)</b></p>
+\)</h2>
 
 <p>
 This page contains my computations of isomorphism classes of complex elliptic curves (or equivalently, lattices in \(\C\)) with CM by a particular order in an imaginary quadratic number field, which are in correspondence with the class group of that order. I also compute the ring class fields of these orders.</p>
@@ -54,19 +143,22 @@ polynomial of an order \(\O_D\), we see by Proposition 13.2 of [Cox] that by adj
 To identify which \(j\)-invariant corresponds to which lattice, we need only then approximate the \(j\)-invariants 
 of each lattice; this can be done by truncating the \(q\)-series described in Proposition 9.12 of [Wa] or in <a href="https://math.mit.edu/classes/18.783/2017/ProblemSet8.pdf">this problem set</a>.</p>
 
+<p>If you find any errors in the table below please <a href="mailto:sheelad.math@gmail.com">let me know</a>.</p>
+</section>
+ <section id="bibliography" class="section container">
+
+<h2> Bibliography: </h2>
+<p>[Cox] David A Cox. <em>Primes of the form x<sup>\(2\)</sup> + ny<sup>\(2\)</sup>: Fermat, class field theory, and complex
+multiplication.</em> Vol. 34. John Wiley & Sons, 2011.</p>
 
 
-
-<hr>
-<p><b> Bibliography: </b><ul>
-<li>[Cox] David A Cox. <em>Primes of the form x<sup>\(2\)</sup> + ny<sup>\(2\)</sup>: Fermat, class field theory, and complex
-multiplication.</em> Vol. 34. John Wiley & Sons, 2011.</li>
-<li>[Wa] Lawrence C Washington. <em>Elliptic curves: number theory and cryptography.</em> Chapman
-and Hall/CRC, 2008.</li></ul>
+<p>[Wa] Lawrence C Washington. <em>Elliptic curves: number theory and cryptography.</em> Chapman
+and Hall/CRC, 2008.
 </p>
 
-<hr>
-<p><b> Computations: </b></p>
+</section>
+ <section id="computations" class="section container">
+<h2> Computations: </h2>
 
 <p>In the tables below, which cover some orders in the imaginary quadratic number fields \(K=\Q(i), \Q(\s)\), we list the order, the class group of that order, and the ring class field. When I have computed them, I give lattices \(\lr{a,b}\) which correspond to the elements of the class group (where \(\lr{a,b}\) corresponds to the \(\Z\) span of the complex numbers \(a,b\)) and the \(j\)-invariants of those lattices.
 </p>
@@ -612,7 +704,9 @@ The ring of integers of \(\Q(\s)\) is \(\O_{\Q(\s)}=\Z[\frac{1+\s}{2}]=\Z[\omega
 </tbody>
 </table>
 
-<hr>
-<p> This website is hosted with GitHub Pages. LaTeX displayed with <a href="https://docs.mathjax.org">MathJax</a>. </p>
+</section>
+  <footer>
+        <p>Sheela Devadas &copy; 2024 | Hosted by GitHub Pages. \(\LaTeX\) displayed with <a href="https://docs.mathjax.org">MathJax</a>.</p>
+    </footer>
 </body>
 </html>
